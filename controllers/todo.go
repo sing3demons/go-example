@@ -37,7 +37,12 @@ type TodoCreateRequest struct {
 
 func (t *TodoController) Create(c *gin.Context) {
 	var req TodoCreateRequest
-	c.ShouldBindJSON(&req)
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(400, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
 
 	todo := models.Todo{
 		Title:     req.Title,
