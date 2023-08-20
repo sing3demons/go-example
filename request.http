@@ -10,3 +10,19 @@ Content-Type: application/json
 {
     "title": "Test",
 }
+
+### mongo product 
+GET {{uri}}/products HTTP/1.1
+
+###
+POST {{uri}}/products HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Test2",
+    "price": 1010,
+    "description": "Test"
+}
+
+### mongo product
+GET {{uri}}/products/64e213b8a96239103c262f0d HTTP/1.1
