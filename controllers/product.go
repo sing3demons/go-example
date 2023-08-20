@@ -30,6 +30,7 @@ func (p *ProductController) Find(c *gin.Context) {
 		c.JSON(500, gin.H{
 			"message": err.Error(),
 		})
+		return
 	}
 	defer cursor.Close(ctx)
 
@@ -37,6 +38,7 @@ func (p *ProductController) Find(c *gin.Context) {
 		c.JSON(500, gin.H{
 			"message": err.Error(),
 		})
+		return
 	}
 
 	c.JSON(200, gin.H{
@@ -56,12 +58,14 @@ func (p *ProductController) FindOne(c *gin.Context) {
 		c.JSON(500, gin.H{
 			"message": err.Error(),
 		})
+		return
 	}
 
 	if err := p.db.FindOne(ctx, bson.M{"_id": id}).Decode(&product); err != nil {
 		c.JSON(500, gin.H{
 			"message": err.Error(),
 		})
+		return
 	}
 
 	c.JSON(200, gin.H{
@@ -81,6 +85,7 @@ func (p *ProductController) Create(c *gin.Context) {
 		c.JSON(500, gin.H{
 			"message": err.Error(),
 		})
+		return
 	}
 
 	product.ID = r.InsertedID.(primitive.ObjectID)
