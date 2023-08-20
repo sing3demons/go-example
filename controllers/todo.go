@@ -23,6 +23,7 @@ func (t *TodoController) Index(c *gin.Context) {
 		c.JSON(500, gin.H{
 			"message": err.Error(),
 		})
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
