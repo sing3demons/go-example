@@ -16,19 +16,12 @@ func main() {
 		}
 	}
 
-	gorm, err := db.ConnectDB()
-	if err != nil {
-		panic(err)
-	}
-
 	mongo, err := db.ConnectMonoDB()
-
 	if err != nil {
 		panic(err)
 	}
 
 	r := gin.Default()
-	router.Router(r, gorm)
 	router.ProductRouter(r, mongo)
 
 	r.Run(":" + os.Getenv("PORT"))

@@ -1,18 +1,6 @@
 version: '3.9'
 
 services:
-  db:
-    image: postgres:15.4
-    container_name: postgres
-    user: postgres
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: go-backend
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./_db:/var/lib/postgresql/data # persist data
   mongo:
     image: mongo
     container_name: mongo
@@ -32,8 +20,6 @@ services:
   #   environment:
   #     GO_ENV: production
   #     PORT: 8080
-  #     DATABASE_URL: postgresql://user:password@db/go-backend?sslmode=disable&timezone=Asia/Bangkok
   #     MONGO_URL: mongodb://user:password@mongo:27017
   #   depends_on:
-  #     - db
   #     - mongo
