@@ -21,10 +21,6 @@ func NewGormStore(db *gorm.DB) Storer {
 	}
 }
 
-func (s *gormStore) DB() *gorm.DB {
-	return s.db
-}
-
 func (s *gormStore) Find(dest any, conds ...any) error {
 	r := s.db.Find(dest, conds...)
 	return r.Error
