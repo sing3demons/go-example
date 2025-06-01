@@ -7,6 +7,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/sing3demons/go-example/db"
 	"github.com/sing3demons/go-example/router"
+	"github.com/sing3demons/go-example/store"
 )
 
 func main() {
@@ -28,7 +29,7 @@ func main() {
 	}
 
 	r := gin.Default()
-	router.Router(r, gorm)
+	router.Router(r, store.NewGormStore(gorm))
 	router.ProductRouter(r, mongo)
 
 	r.Run(":" + os.Getenv("PORT"))

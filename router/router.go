@@ -3,11 +3,11 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/sing3demons/go-example/controllers"
+	"github.com/sing3demons/go-example/store"
 	"go.mongodb.org/mongo-driver/mongo"
-	"gorm.io/gorm"
 )
 
-func Router(r *gin.Engine, db *gorm.DB) {
+func Router(r *gin.Engine, db store.Storer) {
 	todoController := controllers.NewTodoController(db)
 
 	r.GET("/todos", todoController.Index)
