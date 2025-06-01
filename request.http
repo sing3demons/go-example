@@ -25,4 +25,4 @@ Content-Type: application/json
 }
 
 ### mongo product
-GET {{uri}}/products/64e213b8a96239103c262f0d HTTP/1.1
+GET {{uri}}/products/683c5aa378692349cc47a0a7 HTTP/1.1

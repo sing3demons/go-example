@@ -24,15 +24,19 @@ type Todo struct {
 	Completed bool      `json:"completed"`
 }
 
+const (
+	pathTodo = "/api/todos"
+)
+
 func setupApp(db store.Storer) *httptest.ResponseRecorder {
 	gin.SetMode(gin.TestMode)
 
 	todoController := NewTodoController(db)
 
 	r := gin.New()
-	r.GET("/api/todos", todoController.Index)
+	r.GET(pathTodo, todoController.Index)
 
-	req, _ := http.NewRequest(http.MethodGet, "/api/todos", nil)
+	req, _ := http.NewRequest(http.MethodGet, pathTodo, nil)
 	rec := httptest.NewRecorder()
 	r.ServeHTTP(rec, req)
 
@@ -45,9 +49,9 @@ func setupPost(db store.Storer, body *strings.Reader) *httptest.ResponseRecorder
 	todoController := NewTodoController(db)
 
 	r := gin.New()
-	r.POST("/api/todos", todoController.Create)
+	r.POST(pathTodo, todoController.Create)
 
-	req, _ := http.NewRequest(http.MethodPost, "/api/todos", body)
+	req, _ := http.NewRequest(http.MethodPost, pathTodo, body)
 	rec := httptest.NewRecorder()
 	r.ServeHTTP(rec, req)
 
@@ -58,7 +62,7 @@ func TestFindTodo(t *testing.T) {
 	mockTodos := []models.Todo{
 		{
 			Model:     gorm.Model{ID: 1},
-			Title:     "Buy groceries",
+			Title:     "buy groceries",
 			Completed: false,
 		},
 		{
